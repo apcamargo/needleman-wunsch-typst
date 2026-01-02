@@ -11,7 +11,7 @@ use std::collections::HashMap;
 /// Lowest score = -4.0, Highest score = 5.0
 pub fn get_ednafull_matrix() -> HashMap<(char, char), f32> {
     let chars = [
-        'A', 'T', 'G', 'C', 'S', 'W', 'R', 'Y', 'K', 'M', 'B', 'V', 'H', 'D', 'N', 'U',
+        'A', 'T', 'G', 'C', 'S', 'W', 'R', 'Y', 'K', 'M', 'B', 'V', 'H', 'D', 'N',
     ];
 
     // Matrix values row by row (from the EDNAFULL file)
@@ -32,7 +32,6 @@ pub fn get_ednafull_matrix() -> HashMap<(char, char), f32> {
         [-1.0, -1.0, -4.0, -1.0, -3.0, -1.0, -3.0, -1.0, -3.0, -1.0, -2.0, -2.0, -1.0, -2.0, -1.0, -1.0], // H
         [-1.0, -1.0, -1.0, -4.0, -3.0, -1.0, -1.0, -3.0, -1.0, -3.0, -2.0, -2.0, -2.0, -1.0, -1.0, -1.0], // D
         [-2.0, -2.0, -2.0, -2.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -2.0], // N
-        [-4.0,  5.0, -4.0, -4.0, -4.0,  1.0, -4.0,  1.0,  1.0, -4.0, -1.0, -4.0, -1.0, -1.0, -2.0,  5.0], // U
     ];
 
     let mut matrix = HashMap::new();
@@ -90,10 +89,6 @@ mod tests {
         assert_eq!(matrix.get(&('A', 'W')), Some(&1.0)); // W = A or T
         assert_eq!(matrix.get(&('A', 'R')), Some(&1.0)); // R = A or G
         assert_eq!(matrix.get(&('N', 'N')), Some(&-1.0)); // N = any
-
-        // U should behave like T
-        assert_eq!(matrix.get(&('U', 'U')), Some(&5.0));
-        assert_eq!(matrix.get(&('T', 'U')), Some(&5.0));
     }
 
     #[test]
